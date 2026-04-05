@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+/* Container slider */
+.slider {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+
+  aspect-ratio: 16 / 9; /* 🔥 ini kunci 16:9 */
+  
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Slides */
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Gambar */
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* biar pas tanpa gepeng */
+}
+
+/* Tombol */
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+button:hover {
+  background: rgba(0,0,0,0.8);
+}
