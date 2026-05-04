@@ -5,40 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio Muhamad Adrian</title>
 
-  <!-- CSS BENAR -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      min-height: 100vh;
+      background: #111;
+    }
+
+    /* VIDEO BACKGROUND */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    /* WRAPPER */
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* SLIDER */
+    .slider {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    .slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* BUTTON */
+    button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    button:hover {
+      background: rgba(0,0,0,0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND VIDEO -->
 <video class="bg-video" autoplay muted loop>
-  <source src="vid/Plexus.mp4" type="video/mp4">
+  <source src="Plexus.mp4" type="video/mp4">
 </video>
 
-<!-- OVERLAY -->
 <div class="overlay"></div>
 
-<!-- SLIDER -->
-<div class="slider">
+<div class="wrapper">
+  <div class="slider">
 
-  <div class="slides">
-    <img src="img/Slide1.jpeg">
-    <img src="img/Slide2.jpeg">
-    <img src="img/Slide3.jpeg">
-    <img src="img/Slide4.jpeg">
-    <img src="img/Slide5.jpeg">
-    <img src="img/Slide6.jpeg">
-    <img src="img/Slide7.jpeg">
-    <img src="img/Slide8.jpeg">
-    <img src="img/Slide9.jpeg">
+    <div class="slides">
+      <img src="img/Slide1.jpeg">
+      <img src="img/Slide2.jpeg">
+      <img src="img/Slide3.jpeg">
+      <img src="img/Slide4.jpeg">
+      <img src="img/Slide5.jpeg">
+      <img src="img/Slide6.jpeg">
+      <img src="img/Slide7.jpeg">
+      <img src="img/Slide8.jpeg">
+      <img src="img/Slide9.jpeg">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
   </div>
-
-  <button class="prev">&#10094;</button>
-  <button class="next">&#10095;</button>
-
 </div>
 
-<script src="script.js"></script>
+<script>
+const slides = document.querySelector(".slides");
+const images = document.querySelectorAll(".slides img");
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+let index = 0;
+
+function showSlide(i) {
+  if (i >= images.length) index = 0;
+  else if (i < 0) index = images.length - 1;
+  else index = i;
+
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+next.addEventListener("click", () => showSlide(index + 1));
+prev.addEventListener("click", () => showSlide(index - 1));
+</script>
+
 </body>
 </html>
