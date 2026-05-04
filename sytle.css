@@ -6,52 +6,76 @@
 
 body {
   background: #111;
+  font-family: sans-serif;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: sans-serif;
 }
 
-/* Container slider */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2; /* PALING BELAKANG */
+}
+
+/* OVERLAY GELAP */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: -1; /* DI ATAS VIDEO */
+}
+
 .slider {
   position: relative;
+  z-index: 1; /* PALING DEPAN */
+
   width: 90%;
   max-width: 900px;
+  aspect-ratio: 16 / 9;
 
-  aspect-ratio: 16 / 9; /* 🔥 ini kunci 16:9 */
-  
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
-/* Slides */
 .slides {
   display: flex;
   height: 100%;
   transition: transform 0.4s ease-in-out;
 }
 
-/* Gambar */
 .slides img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* biar pas tanpa gepeng */
+  object-fit: cover;
+  flex-shrink: 0; /* penting biar tidak mengecil */
 }
 
-/* Tombol */
+
 button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
   background: rgba(0,0,0,0.5);
   color: white;
   border: none;
+
   padding: 10px 15px;
   cursor: pointer;
   font-size: 20px;
   border-radius: 50%;
+
+  transition: 0.3s;
 }
 
 .prev { left: 10px; }
@@ -59,4 +83,5 @@ button {
 
 button:hover {
   background: rgba(0,0,0,0.8);
+  transform: translateY(-50%) scale(1.1);
 }
